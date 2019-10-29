@@ -1,0 +1,36 @@
+type Query {
+  me: User
+  leagues: [League!]
+}
+
+type Mutation {
+  signup(email: String!, password: String!, name: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+}
+
+type League {
+  id: ID!
+  name: String!
+  type: String!
+  country: String!
+  countryCode: String!
+  season: Int!
+  seasonStart: String!
+  seasonEnd: String!
+  logo: String!
+  flag: String!
+  standings: Boolean!
+  isCurrent: Boolean!
+  coverage: String!
+}
