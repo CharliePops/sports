@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import Link from "next/link";
@@ -20,11 +20,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function ButtonAppBar() {
+const Nav: FC = () => {
   const classes = useStyles({});
   const [isLoggedIn, setIsLogged] = React.useState<boolean>(false);
 
-  const handleLogout = () => {
+  const handleLogout = (): void => {
     localStorage.removeItem(AUTH_TOKEN);
     Router.push("/");
   };
@@ -56,4 +56,6 @@ export default function ButtonAppBar() {
       </AppBar>
     </div>
   );
-}
+};
+
+export default Nav;

@@ -28,7 +28,7 @@ interface State {
 }
 
 const SignIn: FC = () => {
-  const [login, { loading, error }] = useMutation(LOGIN);
+  const [login, { loading }] = useMutation(LOGIN);
 
   // TODO: use form component/library and validation
   const [values, setValues] = React.useState<State>({

@@ -1,5 +1,3 @@
-import React from "react";
-import { NextPageContext } from "next";
 import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/core/styles";
 import theme from "../lib/theme";
@@ -30,7 +28,6 @@ export default class MyDocument extends Document {
   }
 }
 
-// @ts-ignore
 MyDocument.getInitialProps = async ctx => {
   // Resolution order
   //
@@ -63,11 +60,12 @@ MyDocument.getInitialProps = async ctx => {
       enhanceApp: App => props => sheets.collect(<App {...props} />)
     });
 
-  const initialProps: Record<string, any> = await Document.getInitialProps(ctx);
+  const initialProps = await Document.getInitialProps(ctx);
+  const styles: any = initialProps.styles;
 
   return {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.
-    styles: [...initialProps.styles, sheets.getStyleElement()]
+    styles: [...styles, sheets.getStyleElement()]
   };
 };

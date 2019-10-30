@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import Head from "next/head";
 import Nav from "../components/Nav";
 
 import { useQuery } from "@apollo/react-hooks";
@@ -13,8 +12,8 @@ const GET_LEAGUES = gql`
   }
 `;
 
-const Home = () => {
-  const { loading, error, data } = useQuery(GET_LEAGUES);
+const Home: FC = () => {
+  const { loading, error } = useQuery(GET_LEAGUES);
   if (loading) return <p>Loading ...</p>;
   if (error) return <p>Errro {JSON.stringify(error)}</p>;
 
