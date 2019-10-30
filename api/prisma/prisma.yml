@@ -8,8 +8,6 @@ datamodel: datamodel.prisma
 generate:
   - generator: typescript-client
     output: ../src/generated/prisma-client
-  - generator: typescript-client
-    output: ../../ui/generated/prisma-client
 
 # Seed your service with initial data based on `seed.graphql`.
 seed:

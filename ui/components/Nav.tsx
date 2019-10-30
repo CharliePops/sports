@@ -1,62 +1,59 @@
 import React from "react";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import Link from "next/link";
+import { AUTH_TOKEN } from "../lib/constants";
+import Router from "next/router";
 
-interface LinkType {
-  href: string;
-  label: string;
-  key?: string;
-}
-
-const links: LinkType[] = [
-  { href: "https://zeit.co/now", label: "ZEIT" },
-  { href: "https://github.com/zeit/next.js", label: "GitHub" }
-].map((link: LinkType) => {
-  link.key = `nav-link-${link.href}-${link.label}`;
-  return link;
-});
-
-const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </li>
-      {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
-        </li>
-      ))}
-    </ul>
-
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
-      }
-    `}</style>
-  </nav>
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1
+    },
+    button: {
+      marginRight: theme.spacing(2)
+    },
+    title: {
+      flexGrow: 1,
+      cursor: "pointer"
+    }
+  })
 );
 
-export default Nav;
+export default function ButtonAppBar() {
+  const classes = useStyles({});
+  const [isLoggedIn, setIsLogged] = React.useState<boolean>(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem(AUTH_TOKEN);
+    Router.push("/");
+  };
+
+  React.useEffect(() => {
+    // TODO: move to app state
+    setIsLogged(!!localStorage.getItem(AUTH_TOKEN));
+  });
+
+  return (
+    <div>
+      <AppBar position="static">
+        <Toolbar>
+          <Link href="/">
+            <Typography variant="h6" className={classes.title}>
+              Football
+            </Typography>
+          </Link>
+          {isLoggedIn ? (
+            <Button variant="contained" onClick={handleLogout}>
+              Log Out
+            </Button>
+          ) : (
+            <Link href="/login">
+              <Button variant="contained">Log In</Button>
+            </Link>
+          )}
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
+}
