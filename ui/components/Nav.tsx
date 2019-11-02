@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import Link from "next/link";
-import { AUTH_TOKEN } from "../lib/constants";
-import Router from "next/router";
+// import { AUTH_TOKEN } from "../lib/constants";
+// import Router from "next/router";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,17 +22,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Nav: FC = () => {
   const classes = useStyles({});
-  const [isLoggedIn, setIsLogged] = React.useState<boolean>(false);
+  // const [isLoggedIn, setIsLogged] = React.useState<boolean>(false);
 
-  const handleLogout = (): void => {
-    localStorage.removeItem(AUTH_TOKEN);
-    Router.push("/");
-  };
+  // const handleLogout = (): void => {
+  //   localStorage.removeItem(AUTH_TOKEN);
+  //   Router.push("/");
+  // };
 
-  React.useEffect(() => {
-    // TODO: move to app state
-    setIsLogged(!!localStorage.getItem(AUTH_TOKEN));
-  });
+  // React.useEffect(() => {
+  //   // TODO: move to app state
+  //   setIsLogged(!!localStorage.getItem(AUTH_TOKEN));
+  // });
 
   return (
     <div>
@@ -43,7 +43,7 @@ const Nav: FC = () => {
               Football
             </Typography>
           </Link>
-          {isLoggedIn ? (
+          {/* {isLoggedIn ? (
             <Button variant="contained" onClick={handleLogout}>
               Log Out
             </Button>
@@ -51,7 +51,7 @@ const Nav: FC = () => {
             <Link href="/login">
               <Button variant="contained">Log In</Button>
             </Link>
-          )}
+          )} */}
         </Toolbar>
       </AppBar>
     </div>

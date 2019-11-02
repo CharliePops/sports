@@ -8,7 +8,7 @@ import {
   Button
 } from "@material-ui/core";
 import { AUTH_TOKEN } from "../lib/constants";
-import Nav from "../components/Nav";
+import Layout from "../components/Layout";
 import Router from "next/router";
 
 import { useMutation } from "@apollo/react-hooks";
@@ -51,10 +51,8 @@ const SignIn: FC = () => {
     } catch (error) {}
   };
 
-  // TODO: create layout
   return (
-    <Box>
-      <Nav />
+    <Layout>
       <Box mt={10}>
         <Grid container justify="center" alignItems="center">
           <Grid item xs={12} sm={8}>
@@ -95,7 +93,7 @@ const SignIn: FC = () => {
           </Grid>
         </Grid>
       </Box>
-    </Box>
+    </Layout>
   );
 };
 
