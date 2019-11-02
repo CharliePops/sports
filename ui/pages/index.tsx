@@ -6,6 +6,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { TextField, Box, Grid } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
 import Router from "next/router";
+import { withApollo } from "../lib/apollo";
 
 const StyledGrid = styled(Grid)({
   height: "100%"
@@ -33,7 +34,7 @@ const Home: FC = () => {
   return (
     <Layout>
       <StyledGrid container justify="center">
-        <Box width={[1, 1 / 2, 1 / 4]} mt={10} px={[5, 0]}>
+        <Box width={[1, 1 / 2, 1 / 4]} mt={[5, 10]} px={[5, 0]}>
           <Autocomplete
             loading={loading}
             onChange={handleChange}
@@ -54,4 +55,4 @@ const Home: FC = () => {
   );
 };
 
-export default Home;
+export default withApollo(Home);
